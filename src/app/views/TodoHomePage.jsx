@@ -3,7 +3,7 @@ import TodoList from "../components/TodoList"
 import NewTodoItem from "../components/NewTodoItem"
 import { todoItemService } from "../services/TodoItemService"
 
-const HomePage = () => {
+const TodoHomePage = () => {
   const [todoItems, setTodoItems] = useState([])
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default TodoHomePage

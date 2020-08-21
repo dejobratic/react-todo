@@ -6,15 +6,17 @@ const url = "https://jsonplaceholder.typicode.com/todos"
 class TodoItemService {
   async getAll() {
     const rawTodoItems = await restService.get(url)
-    return rawTodoItems.map(
-      (todoItem) =>
-        new TodoItem(
-          todoItem.id,
-          todoItem.title,
-          todoItem.completed,
-          todoItem.userId
-        )
-    )
+    return rawTodoItems
+      .filter((todoItem) => todoItem.userId === 1)
+      .map(
+        (todoItem) =>
+          new TodoItem(
+            todoItem.id,
+            todoItem.title,
+            todoItem.completed,
+            todoItem.userId
+          )
+      )
   }
 }
 

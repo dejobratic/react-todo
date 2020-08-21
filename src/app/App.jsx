@@ -1,11 +1,11 @@
 import React from "react"
 import "./App.css"
-import HomePage from "./views/HomePage"
+import TodoHomePage from "./views/TodoHomePage"
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <TodoHomePage />
     </div>
   )
 }

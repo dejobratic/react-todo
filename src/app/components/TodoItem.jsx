@@ -1,13 +1,15 @@
 import React from "react"
 
 const TodoItem = ({ todoItem = {} }) => {
-  const itemClass = todoItem.isCompleted ? "completed" : ""
+  
+  const itemClass = todoItem.isCompleted ? { className: "completed" } : {}
+  const isDefaultChecked = todoItem.isCompleted ? { defaultChecked: true } : {}
 
   return (
-    <li className={itemClass}>
+    <li {...itemClass}>
       <div className="form-check">
         <label className="form-check-label">
-          <input className="checkbox" type="checkbox" />
+          <input className="checkbox" type="checkbox" {...isDefaultChecked} />
           {todoItem.title}
           <i className="input-helper"></i>
         </label>
