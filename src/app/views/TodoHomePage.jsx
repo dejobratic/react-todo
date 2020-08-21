@@ -1,20 +1,12 @@
-import React, { useEffect, useReducer } from "react"
+import React, { useContext } from "react"
+
 import TodoList from "../components/TodoList"
 import NewTodoItem from "../components/NewTodoItem"
-import { todoItemService } from "../services/TodoItemService"
-import { GET_ALL, TodoItemsReducer } from "../common/TodoItemsReducer"
+
+import { TodoItemsContext } from "../common/TodoItemsContext"
 
 const TodoHomePage = () => {
-  const [todoItems, dispatch] = useReducer(TodoItemsReducer, [])
-
-  useEffect(() => {
-    const fetchTodoItems = async () => {
-      const todoItems = await todoItemService.getAll()
-      dispatch({ type: GET_ALL, payload: todoItems })
-    }
-
-    fetchTodoItems()
-  }, [])
+  const { todoItems } = useContext(TodoItemsContext)
 
   return (
     <div className="page-content page-container" id="page-content">
