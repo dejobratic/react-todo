@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 
-import { TodoItemsContext } from "../common/TodoItemsContext"
-import { REMOVE, CHANGE_STATUS } from "../common/TodoItemsReducer"
+import { TodoItemsContext } from "app/common/TodoItemsContext"
+import { REMOVE, CHANGE_STATUS } from "app/common/TodoItemsReducer"
 
 const TodoItem = ({ todoItem = {} }) => {
   const { dispatchTodoItems } = useContext(TodoItemsContext)

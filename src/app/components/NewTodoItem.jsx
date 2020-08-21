@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react"
-import { TodoItemsContext } from "../common/TodoItemsContext"
-import { ADD } from "../common/TodoItemsReducer"
-import TodoItem from "../models/TodoItem"
+
+import { TodoItemsContext } from "app/common/TodoItemsContext"
+import { ADD } from "app/common/TodoItemsReducer"
+
+import TodoItem from "app/models/TodoItem"
 
 const NewTodoItem = ({ placeholder = "" }) => {
   const defaultTodoItemTitle = ""

@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 
-import TodoList from "../components/TodoList"
-import NewTodoItem from "../components/NewTodoItem"
+import TodoList from "app/components/TodoList"
+import NewTodoItem from "app/components/NewTodoItem"
 
-import { TodoItemsContext } from "../common/TodoItemsContext"
+import { TodoItemsContext } from "app/common/TodoItemsContext"
 
 const TodoHomePage = () => {
   const { todoItems } = useContext(TodoItemsContext)

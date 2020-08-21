@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect, createContext } from "react"
-import { todoItemService } from "../services/TodoItemService"
-import { GET_ALL, todoItemsReducer } from "./TodoItemsReducer"
+
+import { todoItemService } from "app/services/TodoItemService"
+import { GET_ALL, todoItemsReducer } from "app/common/TodoItemsReducer"
 
 const TodoItemsContext = createContext({})
 

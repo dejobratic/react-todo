@@ -1,5 +1,5 @@
 import React from "react"
-import TodoItem from "./TodoItem"
+import TodoItem from "app/components/TodoItem"
 
 const TodoList = ({ todoItems = [] }) => {
   return (
