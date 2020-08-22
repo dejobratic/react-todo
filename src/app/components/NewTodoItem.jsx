@@ -4,6 +4,7 @@ import { TodoItemsContext } from "app/common/TodoItemsContext"
 import { ADD } from "app/common/TodoItemsReducer"
 
 import TodoItem from "app/models/TodoItem"
+import { Button, InputGroup, FormControl } from "react-bootstrap"
 
 const NewTodoItem = ({ placeholder = "" }) => {
   const defaultTodoItemTitle = ""
@@ -15,7 +16,8 @@ const NewTodoItem = ({ placeholder = "" }) => {
     const generateId = () => {
       const min = 12234
       const max = 43112
-      return Math.random() * (max - min) + min
+
+      return Math.floor(Math.random() * max) + min
     }
 
     return new TodoItem(generateId(), todoItemTitle, false, generateId())
@@ -39,21 +41,20 @@ const NewTodoItem = ({ placeholder = "" }) => {
   }
 
   return (
-    <div className="add-items d-flex">
-      <input
-        type="text"
-        className="form-control todo-list-input"
+    <InputGroup className="mb-3">
+      <FormControl
         placeholder={placeholder}
+        aria-label={placeholder}
+        aria-describedby="basic-addon2"
         value={todoItemTitle}
         onChange={handleTodoItemTitleChange}
       />
-      <button
-        className="add btn btn-primary font-weight-bold todo-list-add-btn"
-        onClick={handleAddTodoItem}
-      >
-        Add
-      </button>
-    </div>
+      <InputGroup.Append>
+        <Button variant="outline-primary" onClick={handleAddTodoItem}>
+          Add
+        </Button>
+      </InputGroup.Append>
+    </InputGroup>
   )
 }
 

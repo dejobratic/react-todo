@@ -1,17 +1,13 @@
 import React from "react"
+import { Container } from "react-bootstrap"
 
-import TodoHomePage from "./views/TodoHomePage"
-import { TodoItemsProvider } from "./common/TodoItemsContext"
+import TodoList from "app/views/TodoList"
 
-import "./App.css"
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <TodoItemsProvider>
-        <TodoHomePage />
-      </TodoItemsProvider>
-    </div>
+    <Container>
+        <TodoList></TodoList>
+    </Container>
   )
 }
 
