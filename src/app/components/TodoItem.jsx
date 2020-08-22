@@ -1,36 +1,46 @@
 import React, { useContext } from "react"
 import { ListGroup, Button, Form, Col } from "react-bootstrap"
 
-import { TodoItemsContext } from "app/common/TodoItemsContext"
-import { REMOVE, CHANGE_STATUS } from "app/common/TodoItemsReducer"
+import { TodoItemContext } from "app/common/TodoItemContext"
+import {
+  REMOVE_TODO_ITEM,
+  CHANGE_TODO_ITEM_STATUS,
+} from "app/common/TodoItemReducer"
 
-const CompletedTodoItemTitle = ({ value }) => {
-  return (
-    <Form.Label className="text-muted">
-      <del>{value}</del>
-    </Form.Label>
-  )
-}
+import { ToastContext } from "app/common/ToastContext"
+import { ADD_TOAST } from "app/common/ToastReducer"
 
-const UncompletedTodoItemTitle = ({ value }) => {
-  return <Form.Label>{value}</Form.Label>
-}
+import Toast from "app/models/Toast"
 
 const TodoItem = ({ todoItem = {} }) => {
-  const { dispatchTodoItems } = useContext(TodoItemsContext)
+  const { dispatchTodoItems } = useContext(TodoItemContext)
+  const { dispatchToast } = useContext(ToastContext)
 
   const handleChangeTodoItemStatus = (todoItemId) => {
-    dispatchTodoItems({ type: CHANGE_STATUS, payload: todoItemId })
+    dispatchTodoItems({ type: CHANGE_TODO_ITEM_STATUS, payload: todoItemId })
   }
 
   const handleRemoveTodoItem = (todoItemId) => {
-    dispatchTodoItems({ type: REMOVE, payload: todoItemId })
+    dispatchTodoItems({ type: REMOVE_TODO_ITEM, payload: todoItemId })
+    dispatchToast({type: ADD_TOAST, payload: new Toast("Success", "Removed todo item.")})
+  }
+
+  const CompletedTodoItemTitle = ({ value }) => {
+    return (
+      <Form.Label className="text-muted">
+        <del>{value}</del>
+      </Form.Label>
+    )
+  }
+
+  const UncompletedTodoItemTitle = ({ value }) => {
+    return <Form.Label>{value}</Form.Label>
   }
 
   const todoItemTitle = todoItem.isCompleted ? (
     <CompletedTodoItemTitle value={todoItem.title} />
   ) : (
-    <UncompletedTodoItemTitle value={todoItem.title}/>
+    <UncompletedTodoItemTitle value={todoItem.title} />
   )
 
   return (

@@ -1,16 +1,13 @@
 import React, { useContext } from "react"
-import { Navbar, Form } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 
 import TodoItemCollection from "app/components/TodoItemCollection"
 import NewTodoItem from "app/components/NewTodoItem"
 
-import {
-  TodoItemsContext,
-  TodoItemsProvider,
-} from "app/common/TodoItemsContext"
+import { TodoItemContext, TodoItemProvider } from "app/common/TodoItemContext"
 
 const MyTodoList = () => {
-  const { todoItems } = useContext(TodoItemsContext)
+  const { todoItems } = useContext(TodoItemContext)
 
   return (
     <>
@@ -28,9 +25,9 @@ const MyTodoList = () => {
 const TodoList = () => {
   return (
     <>
-      <TodoItemsProvider>
+      <TodoItemProvider>
         <MyTodoList />
-      </TodoItemsProvider>
+      </TodoItemProvider>
     </>
   )
 }

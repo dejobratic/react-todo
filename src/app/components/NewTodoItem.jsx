@@ -1,30 +1,23 @@
 import React, { useState, useContext } from "react"
 
-import { TodoItemsContext } from "app/common/TodoItemsContext"
-import { ADD } from "app/common/TodoItemsReducer"
+import { TodoItemContext } from "app/common/TodoItemContext"
+import { ADD_TODO_ITEM } from "app/common/TodoItemReducer"
+
+import { ToastContext } from "app/common/ToastContext"
+import { ADD_TOAST } from "app/common/ToastReducer"
 
 import TodoItem from "app/models/TodoItem"
 import { Button, InputGroup, FormControl } from "react-bootstrap"
+import Toast from "app/models/Toast"
 
 const NewTodoItem = ({ placeholder = "" }) => {
   const defaultTodoItemTitle = ""
   const [todoItemTitle, setTodoItemTitle] = useState(defaultTodoItemTitle)
-  const { dispatchTodoItems } = useContext(TodoItemsContext)
+  const { dispatchTodoItems } = useContext(TodoItemContext)
 
-  const createNewTodoItem = () => {
-    // generate mock id
-    const generateId = () => {
-      const min = 12234
-      const max = 43112
-
-      return Math.floor(Math.random() * max) + min
-    }
-
-    return new TodoItem(generateId(), todoItemTitle, false, generateId())
-  }
+  const { dispatchToast } = useContext(ToastContext)
 
   const handleTodoItemTitleChange = (event) => {
-    event.preventDefault()
     setTodoItemTitle(event.target.value)
   }
 
@@ -35,8 +28,16 @@ const NewTodoItem = ({ placeholder = "" }) => {
     }
 
     if (isValidTodoItemTitle()) {
-      dispatchTodoItems({ type: ADD, payload: createNewTodoItem() })
+      dispatchTodoItems({
+        type: ADD_TODO_ITEM,
+        payload: new TodoItem(todoItemTitle, false, 1),
+      })
       setTodoItemTitle(defaultTodoItemTitle)
+
+      dispatchToast({
+        type: ADD_TOAST,
+        payload: new Toast("Success", "Added new todo item."),
+      })
     }
   }
 

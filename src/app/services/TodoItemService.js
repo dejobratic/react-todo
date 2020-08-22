@@ -13,7 +13,6 @@ class TodoItemService {
       .map(
         (todoItem) =>
           new TodoItem(
-            todoItem.id,
             todoItem.title,
             todoItem.completed,
             todoItem.userId

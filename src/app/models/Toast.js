@@ -6,13 +6,13 @@ const generateId = () => {
   return Math.floor(Math.random() * max) + min
 }
 
-class TodoItem {
-  constructor(title, isCompleted, creatorId) {
+class Toast {
+  constructor(title, message, visibilityDuration = 1000) {
     this.id = generateId()
     this.title = title
-    this.isCompleted = isCompleted
-    this.creatorId = creatorId
+    this.message = message
+    this.visibilityDuration = visibilityDuration
   }
 }
 
-export default TodoItem
+export default Toast
